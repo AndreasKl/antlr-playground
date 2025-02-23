@@ -1,0 +1,3 @@
+This is a [b]bold[/b] and [i]italic[/i] word.
+This is [color=FF5733]colored[/color] text.
+You can also [b][i]nest formatting[/i][/b].
