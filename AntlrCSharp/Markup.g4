@@ -1,11 +1,13 @@
 grammar Markup;
 
-markup  : (element | TEXT)+ ;
+markup  : (element | text)+ ;
 element : bold | italic | color ;
 
+text      : TEXT ;
 bold      : '[b]' markup? '[/b]' ;
 italic    : '[i]' markup? '[/i]' ;
-color     : '[color=' COLORCODE ']' markup? '[/color]' ;
+color     : '[color=' colorcode ']' markup? '[/color]' ;
+colorcode : COLORCODE ;
 
 
 // Lexer rules
