@@ -36,7 +36,7 @@ return;
 void GenerateContent(TextDescriptor textDescriptor, string content)
 {
     var markupParser = Parser(content);
-    markupParser.AddErrorListener(new ConsoleErrorListener<IToken>());
+    markupParser.AddErrorListener(new MarkupErrorListener());
     markupParser.AddParseListener(new QuestPdfListener(textDescriptor));
     markupParser.markup();
     return;

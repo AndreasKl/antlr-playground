@@ -119,42 +119,6 @@ public partial class MarkupBaseListener : IMarkupListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitColorcode([NotNull] MarkupParser.ColorcodeContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="MarkupParser.unmatched_bold"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterUnmatched_bold([NotNull] MarkupParser.Unmatched_boldContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="MarkupParser.unmatched_bold"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitUnmatched_bold([NotNull] MarkupParser.Unmatched_boldContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="MarkupParser.unmatched_italic"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterUnmatched_italic([NotNull] MarkupParser.Unmatched_italicContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="MarkupParser.unmatched_italic"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitUnmatched_italic([NotNull] MarkupParser.Unmatched_italicContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="MarkupParser.unmatched_color"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterUnmatched_color([NotNull] MarkupParser.Unmatched_colorContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="MarkupParser.unmatched_color"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitUnmatched_color([NotNull] MarkupParser.Unmatched_colorContext context) { }
 
 	/// <inheritdoc/>
 	/// <remarks>The default implementation does nothing.</remarks>

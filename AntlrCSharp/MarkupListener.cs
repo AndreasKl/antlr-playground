@@ -100,34 +100,4 @@ public interface IMarkupListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitColorcode([NotNull] MarkupParser.ColorcodeContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="MarkupParser.unmatched_bold"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterUnmatched_bold([NotNull] MarkupParser.Unmatched_boldContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="MarkupParser.unmatched_bold"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitUnmatched_bold([NotNull] MarkupParser.Unmatched_boldContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="MarkupParser.unmatched_italic"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterUnmatched_italic([NotNull] MarkupParser.Unmatched_italicContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="MarkupParser.unmatched_italic"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitUnmatched_italic([NotNull] MarkupParser.Unmatched_italicContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="MarkupParser.unmatched_color"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterUnmatched_color([NotNull] MarkupParser.Unmatched_colorContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="MarkupParser.unmatched_color"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitUnmatched_color([NotNull] MarkupParser.Unmatched_colorContext context);
 }

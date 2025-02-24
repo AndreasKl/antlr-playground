@@ -40,11 +40,9 @@ public partial class MarkupParser : Parser {
 		TEXT=10, WS=11;
 	public const int
 		RULE_markup = 0, RULE_element = 1, RULE_text = 2, RULE_bold = 3, RULE_italic = 4, 
-		RULE_color = 5, RULE_colorcode = 6, RULE_unmatched_bold = 7, RULE_unmatched_italic = 8, 
-		RULE_unmatched_color = 9;
+		RULE_color = 5, RULE_colorcode = 6;
 	public static readonly string[] ruleNames = {
-		"markup", "element", "text", "bold", "italic", "color", "colorcode", "unmatched_bold", 
-		"unmatched_italic", "unmatched_color"
+		"markup", "element", "text", "bold", "italic", "color", "colorcode"
 	};
 
 	private static readonly string[] _LiteralNames = {
@@ -120,46 +118,40 @@ public partial class MarkupParser : Parser {
 	public MarkupContext markup() {
 		MarkupContext _localctx = new MarkupContext(Context, State);
 		EnterRule(_localctx, 0, RULE_markup);
+		int _la;
 		try {
-			int _alt;
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 22;
+			State = 16;
 			ErrorHandler.Sync(this);
-			_alt = 1;
+			_la = TokenStream.LA(1);
 			do {
-				switch (_alt) {
-				case 1:
+				{
+				State = 16;
+				ErrorHandler.Sync(this);
+				switch (TokenStream.LA(1)) {
+				case T__0:
+				case T__2:
+				case T__4:
 					{
-					State = 22;
-					ErrorHandler.Sync(this);
-					switch (TokenStream.LA(1)) {
-					case T__0:
-					case T__2:
-					case T__4:
-						{
-						State = 20;
-						element();
-						}
-						break;
-					case TEXT:
-						{
-						State = 21;
-						text();
-						}
-						break;
-					default:
-						throw new NoViableAltException(this);
+					State = 14;
+					element();
 					}
+					break;
+				case TEXT:
+					{
+					State = 15;
+					text();
 					}
 					break;
 				default:
 					throw new NoViableAltException(this);
 				}
-				State = 24;
+				}
+				State = 18;
 				ErrorHandler.Sync(this);
-				_alt = Interpreter.AdaptivePredict(TokenStream,1,Context);
-			} while ( _alt!=2 && _alt!=global::Antlr4.Runtime.Atn.ATN.INVALID_ALT_NUMBER );
+				_la = TokenStream.LA(1);
+			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & 1066L) != 0) );
 			}
 		}
 		catch (RecognitionException re) {
@@ -205,27 +197,27 @@ public partial class MarkupParser : Parser {
 		ElementContext _localctx = new ElementContext(Context, State);
 		EnterRule(_localctx, 2, RULE_element);
 		try {
-			State = 29;
+			State = 23;
 			ErrorHandler.Sync(this);
 			switch (TokenStream.LA(1)) {
 			case T__0:
 				EnterOuterAlt(_localctx, 1);
 				{
-				State = 26;
+				State = 20;
 				bold();
 				}
 				break;
 			case T__2:
 				EnterOuterAlt(_localctx, 2);
 				{
-				State = 27;
+				State = 21;
 				italic();
 				}
 				break;
 			case T__4:
 				EnterOuterAlt(_localctx, 3);
 				{
-				State = 28;
+				State = 22;
 				color();
 				}
 				break;
@@ -270,7 +262,7 @@ public partial class MarkupParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 31;
+			State = 25;
 			Match(TEXT);
 			}
 		}
@@ -288,9 +280,6 @@ public partial class MarkupParser : Parser {
 	public partial class BoldContext : ParserRuleContext {
 		[System.Diagnostics.DebuggerNonUserCode] public MarkupContext markup() {
 			return GetRuleContext<MarkupContext>(0);
-		}
-		[System.Diagnostics.DebuggerNonUserCode] public Unmatched_boldContext unmatched_bold() {
-			return GetRuleContext<Unmatched_boldContext>(0);
 		}
 		public BoldContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
@@ -314,27 +303,14 @@ public partial class MarkupParser : Parser {
 		BoldContext _localctx = new BoldContext(Context, State);
 		EnterRule(_localctx, 6, RULE_bold);
 		try {
-			State = 38;
-			ErrorHandler.Sync(this);
-			switch ( Interpreter.AdaptivePredict(TokenStream,3,Context) ) {
-			case 1:
-				EnterOuterAlt(_localctx, 1);
-				{
-				State = 33;
-				Match(T__0);
-				State = 34;
-				markup();
-				State = 35;
-				Match(T__1);
-				}
-				break;
-			case 2:
-				EnterOuterAlt(_localctx, 2);
-				{
-				State = 37;
-				unmatched_bold();
-				}
-				break;
+			EnterOuterAlt(_localctx, 1);
+			{
+			State = 27;
+			Match(T__0);
+			State = 28;
+			markup();
+			State = 29;
+			Match(T__1);
 			}
 		}
 		catch (RecognitionException re) {
@@ -351,9 +327,6 @@ public partial class MarkupParser : Parser {
 	public partial class ItalicContext : ParserRuleContext {
 		[System.Diagnostics.DebuggerNonUserCode] public MarkupContext markup() {
 			return GetRuleContext<MarkupContext>(0);
-		}
-		[System.Diagnostics.DebuggerNonUserCode] public Unmatched_italicContext unmatched_italic() {
-			return GetRuleContext<Unmatched_italicContext>(0);
 		}
 		public ItalicContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
@@ -377,27 +350,14 @@ public partial class MarkupParser : Parser {
 		ItalicContext _localctx = new ItalicContext(Context, State);
 		EnterRule(_localctx, 8, RULE_italic);
 		try {
-			State = 45;
-			ErrorHandler.Sync(this);
-			switch ( Interpreter.AdaptivePredict(TokenStream,4,Context) ) {
-			case 1:
-				EnterOuterAlt(_localctx, 1);
-				{
-				State = 40;
-				Match(T__2);
-				State = 41;
-				markup();
-				State = 42;
-				Match(T__3);
-				}
-				break;
-			case 2:
-				EnterOuterAlt(_localctx, 2);
-				{
-				State = 44;
-				unmatched_italic();
-				}
-				break;
+			EnterOuterAlt(_localctx, 1);
+			{
+			State = 31;
+			Match(T__2);
+			State = 32;
+			markup();
+			State = 33;
+			Match(T__3);
 			}
 		}
 		catch (RecognitionException re) {
@@ -417,9 +377,6 @@ public partial class MarkupParser : Parser {
 		}
 		[System.Diagnostics.DebuggerNonUserCode] public MarkupContext markup() {
 			return GetRuleContext<MarkupContext>(0);
-		}
-		[System.Diagnostics.DebuggerNonUserCode] public Unmatched_colorContext unmatched_color() {
-			return GetRuleContext<Unmatched_colorContext>(0);
 		}
 		public ColorContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
@@ -443,31 +400,18 @@ public partial class MarkupParser : Parser {
 		ColorContext _localctx = new ColorContext(Context, State);
 		EnterRule(_localctx, 10, RULE_color);
 		try {
-			State = 54;
-			ErrorHandler.Sync(this);
-			switch ( Interpreter.AdaptivePredict(TokenStream,5,Context) ) {
-			case 1:
-				EnterOuterAlt(_localctx, 1);
-				{
-				State = 47;
-				Match(T__4);
-				State = 48;
-				colorcode();
-				State = 49;
-				Match(T__5);
-				State = 50;
-				markup();
-				State = 51;
-				Match(T__6);
-				}
-				break;
-			case 2:
-				EnterOuterAlt(_localctx, 2);
-				{
-				State = 53;
-				unmatched_color();
-				}
-				break;
+			EnterOuterAlt(_localctx, 1);
+			{
+			State = 35;
+			Match(T__4);
+			State = 36;
+			colorcode();
+			State = 37;
+			Match(T__5);
+			State = 38;
+			markup();
+			State = 39;
+			Match(T__6);
 			}
 		}
 		catch (RecognitionException re) {
@@ -507,7 +451,7 @@ public partial class MarkupParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 56;
+			State = 41;
 			Match(COLORCODE);
 			}
 		}
@@ -522,234 +466,19 @@ public partial class MarkupParser : Parser {
 		return _localctx;
 	}
 
-	public partial class Unmatched_boldContext : ParserRuleContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode Eof() { return GetToken(MarkupParser.Eof, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public MarkupContext[] markup() {
-			return GetRuleContexts<MarkupContext>();
-		}
-		[System.Diagnostics.DebuggerNonUserCode] public MarkupContext markup(int i) {
-			return GetRuleContext<MarkupContext>(i);
-		}
-		public Unmatched_boldContext(ParserRuleContext parent, int invokingState)
-			: base(parent, invokingState)
-		{
-		}
-		public override int RuleIndex { get { return RULE_unmatched_bold; } }
-		[System.Diagnostics.DebuggerNonUserCode]
-		public override void EnterRule(IParseTreeListener listener) {
-			IMarkupListener typedListener = listener as IMarkupListener;
-			if (typedListener != null) typedListener.EnterUnmatched_bold(this);
-		}
-		[System.Diagnostics.DebuggerNonUserCode]
-		public override void ExitRule(IParseTreeListener listener) {
-			IMarkupListener typedListener = listener as IMarkupListener;
-			if (typedListener != null) typedListener.ExitUnmatched_bold(this);
-		}
-	}
-
-	[RuleVersion(0)]
-	public Unmatched_boldContext unmatched_bold() {
-		Unmatched_boldContext _localctx = new Unmatched_boldContext(Context, State);
-		EnterRule(_localctx, 14, RULE_unmatched_bold);
-		int _la;
-		try {
-			EnterOuterAlt(_localctx, 1);
-			{
-			State = 58;
-			Match(T__0);
-			State = 62;
-			ErrorHandler.Sync(this);
-			_la = TokenStream.LA(1);
-			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & 1066L) != 0)) {
-				{
-				{
-				State = 59;
-				markup();
-				}
-				}
-				State = 64;
-				ErrorHandler.Sync(this);
-				_la = TokenStream.LA(1);
-			}
-			State = 65;
-			Match(Eof);
-			 NotifyErrorListeners("Missing closing [/b] tag"); 
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			ErrorHandler.ReportError(this, re);
-			ErrorHandler.Recover(this, re);
-		}
-		finally {
-			ExitRule();
-		}
-		return _localctx;
-	}
-
-	public partial class Unmatched_italicContext : ParserRuleContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode Eof() { return GetToken(MarkupParser.Eof, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public MarkupContext[] markup() {
-			return GetRuleContexts<MarkupContext>();
-		}
-		[System.Diagnostics.DebuggerNonUserCode] public MarkupContext markup(int i) {
-			return GetRuleContext<MarkupContext>(i);
-		}
-		public Unmatched_italicContext(ParserRuleContext parent, int invokingState)
-			: base(parent, invokingState)
-		{
-		}
-		public override int RuleIndex { get { return RULE_unmatched_italic; } }
-		[System.Diagnostics.DebuggerNonUserCode]
-		public override void EnterRule(IParseTreeListener listener) {
-			IMarkupListener typedListener = listener as IMarkupListener;
-			if (typedListener != null) typedListener.EnterUnmatched_italic(this);
-		}
-		[System.Diagnostics.DebuggerNonUserCode]
-		public override void ExitRule(IParseTreeListener listener) {
-			IMarkupListener typedListener = listener as IMarkupListener;
-			if (typedListener != null) typedListener.ExitUnmatched_italic(this);
-		}
-	}
-
-	[RuleVersion(0)]
-	public Unmatched_italicContext unmatched_italic() {
-		Unmatched_italicContext _localctx = new Unmatched_italicContext(Context, State);
-		EnterRule(_localctx, 16, RULE_unmatched_italic);
-		int _la;
-		try {
-			EnterOuterAlt(_localctx, 1);
-			{
-			State = 68;
-			Match(T__2);
-			State = 72;
-			ErrorHandler.Sync(this);
-			_la = TokenStream.LA(1);
-			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & 1066L) != 0)) {
-				{
-				{
-				State = 69;
-				markup();
-				}
-				}
-				State = 74;
-				ErrorHandler.Sync(this);
-				_la = TokenStream.LA(1);
-			}
-			State = 75;
-			Match(Eof);
-			 NotifyErrorListeners("Missing closing [/i] tag"); 
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			ErrorHandler.ReportError(this, re);
-			ErrorHandler.Recover(this, re);
-		}
-		finally {
-			ExitRule();
-		}
-		return _localctx;
-	}
-
-	public partial class Unmatched_colorContext : ParserRuleContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ColorcodeContext colorcode() {
-			return GetRuleContext<ColorcodeContext>(0);
-		}
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode Eof() { return GetToken(MarkupParser.Eof, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public MarkupContext[] markup() {
-			return GetRuleContexts<MarkupContext>();
-		}
-		[System.Diagnostics.DebuggerNonUserCode] public MarkupContext markup(int i) {
-			return GetRuleContext<MarkupContext>(i);
-		}
-		public Unmatched_colorContext(ParserRuleContext parent, int invokingState)
-			: base(parent, invokingState)
-		{
-		}
-		public override int RuleIndex { get { return RULE_unmatched_color; } }
-		[System.Diagnostics.DebuggerNonUserCode]
-		public override void EnterRule(IParseTreeListener listener) {
-			IMarkupListener typedListener = listener as IMarkupListener;
-			if (typedListener != null) typedListener.EnterUnmatched_color(this);
-		}
-		[System.Diagnostics.DebuggerNonUserCode]
-		public override void ExitRule(IParseTreeListener listener) {
-			IMarkupListener typedListener = listener as IMarkupListener;
-			if (typedListener != null) typedListener.ExitUnmatched_color(this);
-		}
-	}
-
-	[RuleVersion(0)]
-	public Unmatched_colorContext unmatched_color() {
-		Unmatched_colorContext _localctx = new Unmatched_colorContext(Context, State);
-		EnterRule(_localctx, 18, RULE_unmatched_color);
-		int _la;
-		try {
-			EnterOuterAlt(_localctx, 1);
-			{
-			State = 78;
-			Match(T__4);
-			State = 79;
-			colorcode();
-			State = 80;
-			Match(T__5);
-			State = 84;
-			ErrorHandler.Sync(this);
-			_la = TokenStream.LA(1);
-			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & 1066L) != 0)) {
-				{
-				{
-				State = 81;
-				markup();
-				}
-				}
-				State = 86;
-				ErrorHandler.Sync(this);
-				_la = TokenStream.LA(1);
-			}
-			State = 87;
-			Match(Eof);
-			 NotifyErrorListeners("Missing closing [/color] tag"); 
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			ErrorHandler.ReportError(this, re);
-			ErrorHandler.Recover(this, re);
-		}
-		finally {
-			ExitRule();
-		}
-		return _localctx;
-	}
-
 	private static int[] _serializedATN = {
-		4,1,11,91,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,6,2,7,
-		7,7,2,8,7,8,2,9,7,9,1,0,1,0,4,0,23,8,0,11,0,12,0,24,1,1,1,1,1,1,3,1,30,
-		8,1,1,2,1,2,1,3,1,3,1,3,1,3,1,3,3,3,39,8,3,1,4,1,4,1,4,1,4,1,4,3,4,46,
-		8,4,1,5,1,5,1,5,1,5,1,5,1,5,1,5,3,5,55,8,5,1,6,1,6,1,7,1,7,5,7,61,8,7,
-		10,7,12,7,64,9,7,1,7,1,7,1,7,1,8,1,8,5,8,71,8,8,10,8,12,8,74,9,8,1,8,1,
-		8,1,8,1,9,1,9,1,9,1,9,5,9,83,8,9,10,9,12,9,86,9,9,1,9,1,9,1,9,1,9,0,0,
-		10,0,2,4,6,8,10,12,14,16,18,0,0,90,0,22,1,0,0,0,2,29,1,0,0,0,4,31,1,0,
-		0,0,6,38,1,0,0,0,8,45,1,0,0,0,10,54,1,0,0,0,12,56,1,0,0,0,14,58,1,0,0,
-		0,16,68,1,0,0,0,18,78,1,0,0,0,20,23,3,2,1,0,21,23,3,4,2,0,22,20,1,0,0,
-		0,22,21,1,0,0,0,23,24,1,0,0,0,24,22,1,0,0,0,24,25,1,0,0,0,25,1,1,0,0,0,
-		26,30,3,6,3,0,27,30,3,8,4,0,28,30,3,10,5,0,29,26,1,0,0,0,29,27,1,0,0,0,
-		29,28,1,0,0,0,30,3,1,0,0,0,31,32,5,10,0,0,32,5,1,0,0,0,33,34,5,1,0,0,34,
-		35,3,0,0,0,35,36,5,2,0,0,36,39,1,0,0,0,37,39,3,14,7,0,38,33,1,0,0,0,38,
-		37,1,0,0,0,39,7,1,0,0,0,40,41,5,3,0,0,41,42,3,0,0,0,42,43,5,4,0,0,43,46,
-		1,0,0,0,44,46,3,16,8,0,45,40,1,0,0,0,45,44,1,0,0,0,46,9,1,0,0,0,47,48,
-		5,5,0,0,48,49,3,12,6,0,49,50,5,6,0,0,50,51,3,0,0,0,51,52,5,7,0,0,52,55,
-		1,0,0,0,53,55,3,18,9,0,54,47,1,0,0,0,54,53,1,0,0,0,55,11,1,0,0,0,56,57,
-		5,8,0,0,57,13,1,0,0,0,58,62,5,1,0,0,59,61,3,0,0,0,60,59,1,0,0,0,61,64,
-		1,0,0,0,62,60,1,0,0,0,62,63,1,0,0,0,63,65,1,0,0,0,64,62,1,0,0,0,65,66,
-		5,0,0,1,66,67,6,7,-1,0,67,15,1,0,0,0,68,72,5,3,0,0,69,71,3,0,0,0,70,69,
-		1,0,0,0,71,74,1,0,0,0,72,70,1,0,0,0,72,73,1,0,0,0,73,75,1,0,0,0,74,72,
-		1,0,0,0,75,76,5,0,0,1,76,77,6,8,-1,0,77,17,1,0,0,0,78,79,5,5,0,0,79,80,
-		3,12,6,0,80,84,5,6,0,0,81,83,3,0,0,0,82,81,1,0,0,0,83,86,1,0,0,0,84,82,
-		1,0,0,0,84,85,1,0,0,0,85,87,1,0,0,0,86,84,1,0,0,0,87,88,5,0,0,1,88,89,
-		6,9,-1,0,89,19,1,0,0,0,9,22,24,29,38,45,54,62,72,84
+		4,1,11,44,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,6,1,0,
+		1,0,4,0,17,8,0,11,0,12,0,18,1,1,1,1,1,1,3,1,24,8,1,1,2,1,2,1,3,1,3,1,3,
+		1,3,1,4,1,4,1,4,1,4,1,5,1,5,1,5,1,5,1,5,1,5,1,6,1,6,1,6,0,0,7,0,2,4,6,
+		8,10,12,0,0,40,0,16,1,0,0,0,2,23,1,0,0,0,4,25,1,0,0,0,6,27,1,0,0,0,8,31,
+		1,0,0,0,10,35,1,0,0,0,12,41,1,0,0,0,14,17,3,2,1,0,15,17,3,4,2,0,16,14,
+		1,0,0,0,16,15,1,0,0,0,17,18,1,0,0,0,18,16,1,0,0,0,18,19,1,0,0,0,19,1,1,
+		0,0,0,20,24,3,6,3,0,21,24,3,8,4,0,22,24,3,10,5,0,23,20,1,0,0,0,23,21,1,
+		0,0,0,23,22,1,0,0,0,24,3,1,0,0,0,25,26,5,10,0,0,26,5,1,0,0,0,27,28,5,1,
+		0,0,28,29,3,0,0,0,29,30,5,2,0,0,30,7,1,0,0,0,31,32,5,3,0,0,32,33,3,0,0,
+		0,33,34,5,4,0,0,34,9,1,0,0,0,35,36,5,5,0,0,36,37,3,12,6,0,37,38,5,6,0,
+		0,38,39,3,0,0,0,39,40,5,7,0,0,40,11,1,0,0,0,41,42,5,8,0,0,42,13,1,0,0,
+		0,3,16,18,23
 	};
 
 	public static readonly ATN _ATN =
