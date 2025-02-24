@@ -7,7 +7,7 @@ using QuestPDF.Infrastructure;
 const string input = """
                      This is a [b]bold[/b] and an [i]italic[/i] word.
                      This is [color=FF5733]colored[/color] text.
-                     You can also [i]nest [color=FF5733]formatting[/i]yiiiiha[/color].
+                     You can also [i]nest [color=FF5733][b]formatting[/b][/color][/i].
                      """;
 
 QuestPDF.Settings.License = LicenseType.Community;
@@ -36,14 +36,14 @@ return;
 void GenerateContent(TextDescriptor textDescriptor, string content)
 {
     var markupParser = Parser(content);
-    var listener = new QuestPdfListener(textDescriptor);
-    markupParser.AddParseListener(listener);
+    markupParser.AddErrorListener(new ConsoleErrorListener<IToken>());
+    markupParser.AddParseListener(new QuestPdfListener(textDescriptor));
     markupParser.markup();
     return;
 
-    MarkupParser Parser(string input)
+    MarkupParser Parser(string text)
     {
-        var antlrInputStream = new AntlrInputStream(input);
+        var antlrInputStream = new AntlrInputStream(text);
         var lexer = new MarkupLexer(antlrInputStream);
         var tokenStream = new CommonTokenStream(lexer);
         return new MarkupParser(tokenStream);
