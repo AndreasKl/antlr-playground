@@ -1,11 +1,22 @@
-grammar Markup;
+﻿grammar Markup;
+
+options {
+  language = CSharp;
+}
+
+@header {
+  namespace AntlrCSharp.TextEnhancing;
+}
+
 
 markup  : (element | text)+ ;
-element : bold | italic | color ;
+element : bold | italic | color | mail | underline;
 
 text      : TEXT ;
 bold      : '[b]' markup '[/b]' ;
 italic    : '[i]' markup '[/i]' ;
+underline : '[u]' markup '[/u]' ;
+mail      : '[mailto]' markup '[/mailto]' ;
 color     : '[color=' colorcode ']' markup '[/color]' ;
 colorcode : COLORCODE ;
 

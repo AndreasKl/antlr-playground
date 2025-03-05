@@ -1,8 +1,12 @@
-﻿using Antlr4.Runtime;
+﻿using System.Diagnostics;
 using AntlrCSharp;
+using QuestPDF;
 using QuestPDF.Fluent;
 using QuestPDF.Helpers;
 using QuestPDF.Infrastructure;
+using Serilog;
+
+Log.Logger = new LoggerConfiguration().WriteTo.Console().CreateLogger();
 
 const string input = """
                      This is a [b]bold[/b] and an [i]italic[/i] word.
@@ -10,7 +14,7 @@ const string input = """
                      You can also [i]nest [color=FF5733][b]formatting[/b][/color][/i].
                      """;
 
-QuestPDF.Settings.License = LicenseType.Community;
+Settings.License = LicenseType.Community;
 
 Document
   .Create(
@@ -25,27 +29,9 @@ Document
             c.Item()
               .Text(t =>
               {
-                GenerateContent(t, input);
+                TextEnhancer.GenerateContent(t, input);
               });
           });
       })
   )
   .GeneratePdfAndShow();
-return;
-
-void GenerateContent(TextDescriptor textDescriptor, string content)
-{
-  var markupParser = Parser(content);
-  markupParser.AddErrorListener(new MarkupErrorListener());
-  markupParser.AddParseListener(new QuestPdfListener(textDescriptor));
-  markupParser.markup();
-  return;
-
-  MarkupParser Parser(string text)
-  {
-    var antlrInputStream = new AntlrInputStream(text);
-    var lexer = new MarkupLexer(antlrInputStream);
-    var tokenStream = new CommonTokenStream(lexer);
-    return new MarkupParser(tokenStream);
-  }
-}

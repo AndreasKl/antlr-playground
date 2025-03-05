@@ -19,6 +19,9 @@
 // Ambiguous reference in cref attribute
 #pragma warning disable 419
 
+
+  namespace AntlrCSharp.TextEnhancing;
+
 using Antlr4.Runtime.Misc;
 using IParseTreeListener = Antlr4.Runtime.Tree.IParseTreeListener;
 using IToken = Antlr4.Runtime.IToken;
@@ -80,6 +83,26 @@ public interface IMarkupListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitItalic([NotNull] MarkupParser.ItalicContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="MarkupParser.underline"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterUnderline([NotNull] MarkupParser.UnderlineContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="MarkupParser.underline"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitUnderline([NotNull] MarkupParser.UnderlineContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="MarkupParser.mail"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterMail([NotNull] MarkupParser.MailContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="MarkupParser.mail"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitMail([NotNull] MarkupParser.MailContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="MarkupParser.color"/>.
 	/// </summary>

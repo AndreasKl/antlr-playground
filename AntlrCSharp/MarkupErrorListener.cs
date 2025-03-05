@@ -1,4 +1,5 @@
 using Antlr4.Runtime;
+using Serilog;
 
 namespace AntlrCSharp;
 
@@ -14,6 +15,6 @@ public class MarkupErrorListener : BaseErrorListener
     RecognitionException e
   )
   {
-    Console.Error.WriteLine($"An error I guess: {msg}");
+    Log.ForContext<MarkupErrorListener>().Error($"line {line}:{charPositionInLine} {msg}");
   }
 }

@@ -20,6 +20,9 @@
 #pragma warning disable 419
 
 
+  namespace AntlrCSharp.TextEnhancing;
+
+
 using Antlr4.Runtime.Misc;
 using IErrorNode = Antlr4.Runtime.Tree.IErrorNode;
 using ITerminalNode = Antlr4.Runtime.Tree.ITerminalNode;
@@ -95,6 +98,30 @@ public partial class MarkupBaseListener : IMarkupListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitItalic([NotNull] MarkupParser.ItalicContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="MarkupParser.underline"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterUnderline([NotNull] MarkupParser.UnderlineContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="MarkupParser.underline"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitUnderline([NotNull] MarkupParser.UnderlineContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="MarkupParser.mail"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterMail([NotNull] MarkupParser.MailContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="MarkupParser.mail"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitMail([NotNull] MarkupParser.MailContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="MarkupParser.color"/>.
 	/// <para>The default implementation does nothing.</para>

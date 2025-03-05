@@ -19,6 +19,9 @@
 // Ambiguous reference in cref attribute
 #pragma warning disable 419
 
+
+  namespace AntlrCSharp.TextEnhancing;
+
 using System;
 using System.IO;
 using System.Text;
@@ -36,21 +39,23 @@ public partial class MarkupParser : Parser {
 	protected static DFA[] decisionToDFA;
 	protected static PredictionContextCache sharedContextCache = new PredictionContextCache();
 	public const int
-		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, COLORCODE=8, HEX=9, 
-		TEXT=10, WS=11;
+		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T__7=8, T__8=9, 
+		T__9=10, T__10=11, COLORCODE=12, HEX=13, TEXT=14, WS=15;
 	public const int
 		RULE_markup = 0, RULE_element = 1, RULE_text = 2, RULE_bold = 3, RULE_italic = 4, 
-		RULE_color = 5, RULE_colorcode = 6;
+		RULE_underline = 5, RULE_mail = 6, RULE_color = 7, RULE_colorcode = 8;
 	public static readonly string[] ruleNames = {
-		"markup", "element", "text", "bold", "italic", "color", "colorcode"
+		"markup", "element", "text", "bold", "italic", "underline", "mail", "color", 
+		"colorcode"
 	};
 
 	private static readonly string[] _LiteralNames = {
-		null, "'[b]'", "'[/b]'", "'[i]'", "'[/i]'", "'[color='", "']'", "'[/color]'"
+		null, "'[b]'", "'[/b]'", "'[i]'", "'[/i]'", "'[u]'", "'[/u]'", "'[mailto]'", 
+		"'[/mailto]'", "'[color='", "']'", "'[/color]'"
 	};
 	private static readonly string[] _SymbolicNames = {
-		null, null, null, null, null, null, null, null, "COLORCODE", "HEX", "TEXT", 
-		"WS"
+		null, null, null, null, null, null, null, null, null, null, null, null, 
+		"COLORCODE", "HEX", "TEXT", "WS"
 	};
 	public static readonly IVocabulary DefaultVocabulary = new Vocabulary(_LiteralNames, _SymbolicNames);
 
@@ -122,25 +127,27 @@ public partial class MarkupParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 16;
+			State = 20;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
 			do {
 				{
-				State = 16;
+				State = 20;
 				ErrorHandler.Sync(this);
 				switch (TokenStream.LA(1)) {
 				case T__0:
 				case T__2:
 				case T__4:
+				case T__6:
+				case T__8:
 					{
-					State = 14;
+					State = 18;
 					element();
 					}
 					break;
 				case TEXT:
 					{
-					State = 15;
+					State = 19;
 					text();
 					}
 					break;
@@ -148,10 +155,10 @@ public partial class MarkupParser : Parser {
 					throw new NoViableAltException(this);
 				}
 				}
-				State = 18;
+				State = 22;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & 1066L) != 0) );
+			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & 17066L) != 0) );
 			}
 		}
 		catch (RecognitionException re) {
@@ -175,6 +182,12 @@ public partial class MarkupParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode] public ColorContext color() {
 			return GetRuleContext<ColorContext>(0);
 		}
+		[System.Diagnostics.DebuggerNonUserCode] public MailContext mail() {
+			return GetRuleContext<MailContext>(0);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public UnderlineContext underline() {
+			return GetRuleContext<UnderlineContext>(0);
+		}
 		public ElementContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
@@ -197,28 +210,42 @@ public partial class MarkupParser : Parser {
 		ElementContext _localctx = new ElementContext(Context, State);
 		EnterRule(_localctx, 2, RULE_element);
 		try {
-			State = 23;
+			State = 29;
 			ErrorHandler.Sync(this);
 			switch (TokenStream.LA(1)) {
 			case T__0:
 				EnterOuterAlt(_localctx, 1);
 				{
-				State = 20;
+				State = 24;
 				bold();
 				}
 				break;
 			case T__2:
 				EnterOuterAlt(_localctx, 2);
 				{
-				State = 21;
+				State = 25;
 				italic();
 				}
 				break;
-			case T__4:
+			case T__8:
 				EnterOuterAlt(_localctx, 3);
 				{
-				State = 22;
+				State = 26;
 				color();
+				}
+				break;
+			case T__6:
+				EnterOuterAlt(_localctx, 4);
+				{
+				State = 27;
+				mail();
+				}
+				break;
+			case T__4:
+				EnterOuterAlt(_localctx, 5);
+				{
+				State = 28;
+				underline();
 				}
 				break;
 			default:
@@ -262,7 +289,7 @@ public partial class MarkupParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 25;
+			State = 31;
 			Match(TEXT);
 			}
 		}
@@ -305,11 +332,11 @@ public partial class MarkupParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 27;
+			State = 33;
 			Match(T__0);
-			State = 28;
+			State = 34;
 			markup();
-			State = 29;
+			State = 35;
 			Match(T__1);
 			}
 		}
@@ -352,12 +379,106 @@ public partial class MarkupParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 31;
+			State = 37;
 			Match(T__2);
-			State = 32;
+			State = 38;
 			markup();
-			State = 33;
+			State = 39;
 			Match(T__3);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			ExitRule();
+		}
+		return _localctx;
+	}
+
+	public partial class UnderlineContext : ParserRuleContext {
+		[System.Diagnostics.DebuggerNonUserCode] public MarkupContext markup() {
+			return GetRuleContext<MarkupContext>(0);
+		}
+		public UnderlineContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_underline; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IMarkupListener typedListener = listener as IMarkupListener;
+			if (typedListener != null) typedListener.EnterUnderline(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IMarkupListener typedListener = listener as IMarkupListener;
+			if (typedListener != null) typedListener.ExitUnderline(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public UnderlineContext underline() {
+		UnderlineContext _localctx = new UnderlineContext(Context, State);
+		EnterRule(_localctx, 10, RULE_underline);
+		try {
+			EnterOuterAlt(_localctx, 1);
+			{
+			State = 41;
+			Match(T__4);
+			State = 42;
+			markup();
+			State = 43;
+			Match(T__5);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			ExitRule();
+		}
+		return _localctx;
+	}
+
+	public partial class MailContext : ParserRuleContext {
+		[System.Diagnostics.DebuggerNonUserCode] public MarkupContext markup() {
+			return GetRuleContext<MarkupContext>(0);
+		}
+		public MailContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_mail; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IMarkupListener typedListener = listener as IMarkupListener;
+			if (typedListener != null) typedListener.EnterMail(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IMarkupListener typedListener = listener as IMarkupListener;
+			if (typedListener != null) typedListener.ExitMail(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public MailContext mail() {
+		MailContext _localctx = new MailContext(Context, State);
+		EnterRule(_localctx, 12, RULE_mail);
+		try {
+			EnterOuterAlt(_localctx, 1);
+			{
+			State = 45;
+			Match(T__6);
+			State = 46;
+			markup();
+			State = 47;
+			Match(T__7);
 			}
 		}
 		catch (RecognitionException re) {
@@ -398,20 +519,20 @@ public partial class MarkupParser : Parser {
 	[RuleVersion(0)]
 	public ColorContext color() {
 		ColorContext _localctx = new ColorContext(Context, State);
-		EnterRule(_localctx, 10, RULE_color);
+		EnterRule(_localctx, 14, RULE_color);
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 35;
-			Match(T__4);
-			State = 36;
+			State = 49;
+			Match(T__8);
+			State = 50;
 			colorcode();
-			State = 37;
-			Match(T__5);
-			State = 38;
+			State = 51;
+			Match(T__9);
+			State = 52;
 			markup();
-			State = 39;
-			Match(T__6);
+			State = 53;
+			Match(T__10);
 			}
 		}
 		catch (RecognitionException re) {
@@ -447,11 +568,11 @@ public partial class MarkupParser : Parser {
 	[RuleVersion(0)]
 	public ColorcodeContext colorcode() {
 		ColorcodeContext _localctx = new ColorcodeContext(Context, State);
-		EnterRule(_localctx, 12, RULE_colorcode);
+		EnterRule(_localctx, 16, RULE_colorcode);
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 41;
+			State = 55;
 			Match(COLORCODE);
 			}
 		}
@@ -467,18 +588,21 @@ public partial class MarkupParser : Parser {
 	}
 
 	private static int[] _serializedATN = {
-		4,1,11,44,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,6,1,0,
-		1,0,4,0,17,8,0,11,0,12,0,18,1,1,1,1,1,1,3,1,24,8,1,1,2,1,2,1,3,1,3,1,3,
-		1,3,1,4,1,4,1,4,1,4,1,5,1,5,1,5,1,5,1,5,1,5,1,6,1,6,1,6,0,0,7,0,2,4,6,
-		8,10,12,0,0,40,0,16,1,0,0,0,2,23,1,0,0,0,4,25,1,0,0,0,6,27,1,0,0,0,8,31,
-		1,0,0,0,10,35,1,0,0,0,12,41,1,0,0,0,14,17,3,2,1,0,15,17,3,4,2,0,16,14,
-		1,0,0,0,16,15,1,0,0,0,17,18,1,0,0,0,18,16,1,0,0,0,18,19,1,0,0,0,19,1,1,
-		0,0,0,20,24,3,6,3,0,21,24,3,8,4,0,22,24,3,10,5,0,23,20,1,0,0,0,23,21,1,
-		0,0,0,23,22,1,0,0,0,24,3,1,0,0,0,25,26,5,10,0,0,26,5,1,0,0,0,27,28,5,1,
-		0,0,28,29,3,0,0,0,29,30,5,2,0,0,30,7,1,0,0,0,31,32,5,3,0,0,32,33,3,0,0,
-		0,33,34,5,4,0,0,34,9,1,0,0,0,35,36,5,5,0,0,36,37,3,12,6,0,37,38,5,6,0,
-		0,38,39,3,0,0,0,39,40,5,7,0,0,40,11,1,0,0,0,41,42,5,8,0,0,42,13,1,0,0,
-		0,3,16,18,23
+		4,1,15,58,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,6,2,7,
+		7,7,2,8,7,8,1,0,1,0,4,0,21,8,0,11,0,12,0,22,1,1,1,1,1,1,1,1,1,1,3,1,30,
+		8,1,1,2,1,2,1,3,1,3,1,3,1,3,1,4,1,4,1,4,1,4,1,5,1,5,1,5,1,5,1,6,1,6,1,
+		6,1,6,1,7,1,7,1,7,1,7,1,7,1,7,1,8,1,8,1,8,0,0,9,0,2,4,6,8,10,12,14,16,
+		0,0,54,0,20,1,0,0,0,2,29,1,0,0,0,4,31,1,0,0,0,6,33,1,0,0,0,8,37,1,0,0,
+		0,10,41,1,0,0,0,12,45,1,0,0,0,14,49,1,0,0,0,16,55,1,0,0,0,18,21,3,2,1,
+		0,19,21,3,4,2,0,20,18,1,0,0,0,20,19,1,0,0,0,21,22,1,0,0,0,22,20,1,0,0,
+		0,22,23,1,0,0,0,23,1,1,0,0,0,24,30,3,6,3,0,25,30,3,8,4,0,26,30,3,14,7,
+		0,27,30,3,12,6,0,28,30,3,10,5,0,29,24,1,0,0,0,29,25,1,0,0,0,29,26,1,0,
+		0,0,29,27,1,0,0,0,29,28,1,0,0,0,30,3,1,0,0,0,31,32,5,14,0,0,32,5,1,0,0,
+		0,33,34,5,1,0,0,34,35,3,0,0,0,35,36,5,2,0,0,36,7,1,0,0,0,37,38,5,3,0,0,
+		38,39,3,0,0,0,39,40,5,4,0,0,40,9,1,0,0,0,41,42,5,5,0,0,42,43,3,0,0,0,43,
+		44,5,6,0,0,44,11,1,0,0,0,45,46,5,7,0,0,46,47,3,0,0,0,47,48,5,8,0,0,48,
+		13,1,0,0,0,49,50,5,9,0,0,50,51,3,16,8,0,51,52,5,10,0,0,52,53,3,0,0,0,53,
+		54,5,11,0,0,54,15,1,0,0,0,55,56,5,12,0,0,56,17,1,0,0,0,3,20,22,29
 	};
 
 	public static readonly ATN _ATN =
