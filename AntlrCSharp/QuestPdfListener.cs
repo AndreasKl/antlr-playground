@@ -6,60 +6,60 @@ namespace AntlrCSharp;
 
 public class QuestPdfListener(TextDescriptor column) : MarkupBaseListener
 {
-    private const string DefaultColor = "#000";
-    private bool _bold;
-    private bool _italic;
-    private string _color = DefaultColor;
+  private const string DefaultColor = "#000";
+  private bool _bold;
+  private bool _italic;
+  private string _color = DefaultColor;
 
-    public override void ExitText(MarkupParser.TextContext context)
+  public override void ExitText(MarkupParser.TextContext context)
+  {
+    var textBlockDescriptor = column.Span(context.GetText());
+    textBlockDescriptor.FontColor(Color.FromHex(_color));
+    if (_bold)
     {
-        var textBlockDescriptor = column.Span(context.GetText());
-        textBlockDescriptor.FontColor(Color.FromHex(_color));
-        if (_bold)
-        {
-            textBlockDescriptor.Bold();
-        }
-
-        if (_italic)
-        {
-            textBlockDescriptor.Italic();
-        }
+      textBlockDescriptor.Bold();
     }
 
-    public override void EnterBold(MarkupParser.BoldContext context)
+    if (_italic)
     {
-        _bold = true;
+      textBlockDescriptor.Italic();
+    }
+  }
+
+  public override void EnterBold(MarkupParser.BoldContext context)
+  {
+    _bold = true;
+  }
+
+  public override void EnterColorcode(MarkupParser.ColorcodeContext context)
+  {
+    var colorCode = context.Start.Text;
+    if (colorCode.Length != 6)
+    {
+      Console.Error.WriteLine("Invalid color code: " + colorCode);
+      return;
     }
 
-    public override void EnterColorcode(MarkupParser.ColorcodeContext context)
-    {
-        var colorCode = context.Start.Text;
-        if (colorCode.Length != 6)
-        {
-            Console.Error.WriteLine("Invalid color code: " + colorCode);
-            return;
-        }
+    _color = colorCode;
+  }
 
-        _color = colorCode;
-    }
+  public override void EnterItalic(MarkupParser.ItalicContext context)
+  {
+    _italic = true;
+  }
 
-    public override void EnterItalic(MarkupParser.ItalicContext context)
-    {
-        _italic = true;
-    }
+  public override void ExitBold([NotNull] MarkupParser.BoldContext context)
+  {
+    _bold = false;
+  }
 
-    public override void ExitBold([NotNull] MarkupParser.BoldContext context)
-    {
-        _bold = false;
-    }
+  public override void ExitItalic([NotNull] MarkupParser.ItalicContext context)
+  {
+    _italic = false;
+  }
 
-    public override void ExitItalic([NotNull] MarkupParser.ItalicContext context)
-    {
-        _italic = false;
-    }
-
-    public override void ExitColor([NotNull] MarkupParser.ColorContext context)
-    {
-        _color = DefaultColor;
-    }
+  public override void ExitColor([NotNull] MarkupParser.ColorContext context)
+  {
+    _color = DefaultColor;
+  }
 }

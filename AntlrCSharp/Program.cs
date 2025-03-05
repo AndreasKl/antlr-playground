@@ -13,39 +13,39 @@ const string input = """
 QuestPDF.Settings.License = LicenseType.Community;
 
 Document
-    .Create(
-        doc =>
-            doc.Page(p =>
-            {
-                p.Size(PageSizes.A4);
-                p.Margin(10, Unit.Millimetre);
-                p.Content()
-                    .Column(c =>
-                    {
-                        c.Item()
-                            .Text(t =>
-                            {
-                                GenerateContent(t, input);
-                            });
-                    });
-            })
-    )
-    .GeneratePdfAndShow();
+  .Create(
+    doc =>
+      doc.Page(p =>
+      {
+        p.Size(PageSizes.A4);
+        p.Margin(10, Unit.Millimetre);
+        p.Content()
+          .Column(c =>
+          {
+            c.Item()
+              .Text(t =>
+              {
+                GenerateContent(t, input);
+              });
+          });
+      })
+  )
+  .GeneratePdfAndShow();
 return;
 
 void GenerateContent(TextDescriptor textDescriptor, string content)
 {
-    var markupParser = Parser(content);
-    markupParser.AddErrorListener(new MarkupErrorListener());
-    markupParser.AddParseListener(new QuestPdfListener(textDescriptor));
-    markupParser.markup();
-    return;
+  var markupParser = Parser(content);
+  markupParser.AddErrorListener(new MarkupErrorListener());
+  markupParser.AddParseListener(new QuestPdfListener(textDescriptor));
+  markupParser.markup();
+  return;
 
-    MarkupParser Parser(string text)
-    {
-        var antlrInputStream = new AntlrInputStream(text);
-        var lexer = new MarkupLexer(antlrInputStream);
-        var tokenStream = new CommonTokenStream(lexer);
-        return new MarkupParser(tokenStream);
-    }
+  MarkupParser Parser(string text)
+  {
+    var antlrInputStream = new AntlrInputStream(text);
+    var lexer = new MarkupLexer(antlrInputStream);
+    var tokenStream = new CommonTokenStream(lexer);
+    return new MarkupParser(tokenStream);
+  }
 }
